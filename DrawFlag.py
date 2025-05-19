@@ -1,3 +1,11 @@
+"""
+File: DrawFlag.py
+Name: Vishal Singh
+-------------------------
+This file shows how to use the graphics library to
+draw a flag. It's a red rectangle that covers the top half
+of the canvas.
+"""
 from graphics import Canvas
 
 # The width of the canvas
