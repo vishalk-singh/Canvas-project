@@ -42,8 +42,8 @@ def main():
         left_x = left_x + BOX_SIZE  # Move left edge right by one box width
         right_x = right_x + BOX_SIZE  # Move right edge right by one box width
 
-    canvas.mainloop()
 # There is no need to edit code beyond this point
-
+    canvas.mainloop()
+# A python function that runs main() function.
 if __name__ == '__main__':
     main()
