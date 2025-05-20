@@ -1,6 +1,13 @@
 from graphics import Canvas
 import math
-
+"""
+File: SquireLineDraw.py
+Name: Vishal Singh.
+-------------------------
+This program creates a square with a line drawn inside it.
+The line is drawn diagonally from the top-left to the bottom-right.
+This program uses math library and pythagoras theorem to calculate the diagonal length.
+"""
 
 def main():
     # Set the dimensions of the canvas
