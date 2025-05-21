@@ -35,7 +35,8 @@ def main():
                 draw_circle_patch(canvas, x, y)
 
     canvas.mainloop()
-
+# Functions for drawing patches
+# ---------------------------------
 def draw_circle_patch(canvas, start_x, start_y):
     # draws a salmon circle frame at (start_x, start_y)
     end_x = start_x + PATCH_SIZE
