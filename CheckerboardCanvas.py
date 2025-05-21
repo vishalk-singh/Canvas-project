@@ -1,54 +1,89 @@
 """
 File: CheckerboardCanvas.py
 Name: Vishal Singh
--------------------------
-This file shows how to use the graphics library to
-draw a checkerboard pattern on a canvas.
+---------------------------
+This Program draws a checkerboard on the Canvas window.
+ * The size of the checkerboard is specified by the
+ * constants N_ROWS and N_COLUMNS, and the checkerboard fills
+ * the vertical space available.
+
 """
 from graphics import Canvas
+# Note: This is custom class graphics created by Stanford University. It's needs external file to works with pycharm or other IDE.
+
 CANVAS_WIDTH = 400
 CANVAS_HEIGHT = 400
 
-N_ROWS = 8
-N_COLS = 8
+# No of rows and columns to be drawn.
+N_ROWS = 8 # Number of rows in the checkerboard (standard chessboard size)
+N_COLUMNS = 8 # Number of columns in the checkerboard
 
 def main():
     """
-    Creates a checkerboard pattern on a canvas.
-    The pattern is a 50 pix square with black and white squares alternating.
+    Main rendering function:
+    1. Creates the canvas
+    2. Calculates square dimensions
+    3. Draws the checkerboard pattern
     """
+    # Initialize canvas with specified dimensions
     canvas = Canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
-    square_size = CANVAS_WIDTH / N_COLS  # Size of each square auto-calculated by dividing canvas width by number of columns
-    for row in range(N_ROWS):
-        for col in range(N_COLS):
-            # Calculate the top-left corner of the square
-            left_x = col * square_size
-            top_y = row * square_size
-            # Calculate the bottom-right corner of the square
-            right_x = left_x + square_size
-            bottom_y = top_y + square_size
-            # Determine the color of the square based on row and column
-            color = draw_checkerboard_color(row, col)
-            # Draw the square on the canvas
+
+    # Calculate the size of each square to perfectly fit the canvas height
+    # (Using height ensures squares remain equal if canvas isn't square)
+    sq_size = CANVAS_HEIGHT / N_ROWS # Results in 50px squares for 400px/8 rows
+
+    # Nested loop to draw each square in the grid
+    for row in range(N_ROWS): # Main Loop through each row (0 to 7)
+        for column in range(N_COLUMNS): # Nested Loop through each column (0 to 7).
+            # Note: At the end of the loop column variable in this loop resets to 0 after main loop runs.
+
+            # Calculate square coordinates:
+            # Left edge position
+            left_x = column * sq_size
+            # Top edge position
+            top_y = row * sq_size
+            # Right edge position
+            right_x = left_x + sq_size
+            # Bottom edge position
+            bottom_y = top_y + sq_size
+
+            # Determine square color using the draw checkerboard pattern function
+            color = draw_checkerboard_pattern(row, column)
+
+            # Draw the square with:
+            # - Calculated coordinates
+            # - Pattern-determined fill color
+            # - Black outline
             canvas.create_rectangle(
                 left_x,
                 top_y,
                 right_x,
                 bottom_y,
                 color,
-                "black"
+                "black" # Outline color
             )
-    canvas.mainloop()
+    canvas.mainloop() # Its needed to show canvas in pycharm. Not required here.
+def draw_checkerboard_pattern(rows, columns):
+    """
+    Determines the color of a square based on its position.
 
-def draw_checkerboard_color(row, col):
+    Args:
+        row: The row index
+        column: The column index
+
+    Returns:
+        "black" or "white" based on the checkerboard pattern
+
+    Pattern Logic:
+    - If (row + column) is odd → black square
+    - If (row + column) is even → white square
+    This creates the alternating checkerboard effect.
     """
-    Determines the color of the square based on row and column.
-    """
-    if (row + col) % 2 == 0:
+    if (rows + columns) % 2 != 0:
         return "black"
     else:
         return "white"
 
-# ----- DO NOT MODIFY CODE BELOW THIS LINE -----
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     main()
